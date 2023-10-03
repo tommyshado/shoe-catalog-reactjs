@@ -1,1 +1,14 @@
 <h1 x-text="title" class="text-4xl"></h1>
+
+<div class="card">
+    {{#each shoe}}
+    <ul>
+        <li>{{image}}<li>
+        <li><span>Brand name:</span>{{shoe_name}}</li>
+        <li><span>Shoe quantity:</span>{{shoe_qty}}</li>
+        <li><span>Shoe size:</span>{{shoe_size}}</li>
+        <li><span>Shoe color:</span>{{shoe_color}}</li>
+        <li><span>Shoe price:</span>{{shoe_price}}</li>
+    </ul>
+    {{/each}}
+</div>
