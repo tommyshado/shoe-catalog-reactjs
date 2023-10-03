@@ -1,0 +1,23 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shoe Catalog</title>
+
+    {{!-- tailwind --}}
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {{!-- alphineJS --}}
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+  </head>
+  <body x-data="{
+    title: 'Shoe Catalog'
+  }">
+    <center>
+      <div class="container">
+        {{{body}}}
+      </div>
+    </center>
+  </body>
+</html>
