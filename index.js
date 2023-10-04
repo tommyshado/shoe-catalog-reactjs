@@ -16,7 +16,7 @@ app.engine("handlebars", handlebarSetup);
 app.set("view engine", "handlebars");
 app.set("views", "./views");
 
-// Routes
+// Routes Middlewares
 app.use("/", router);
 
 // PORT variable

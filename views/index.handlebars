@@ -1,21 +1,59 @@
-<h2 class="text-4xl">
-    <strong>
-        Footwear
-    </strong>
-</h2>
+<div class="flex items-center justify-center space-y-4">
+    <div class="w-1/2">
+        <h1 class="text-6xl">
+            <strong>
+                Kasi LifeStyle
+            </strong>
+        </h1>
+    </div>
+    
+    <div class="w-1/6">
+        <button class="bg-[#DB814D] w-1/2 rounded-full transition ease-in-out delay-115 hover:-translate-y-1 hover:scale-100 duration-150">
+            <strong>
+                log in
+            </strong>
+        </button>
+    </div>
+    <div class="w-1/6">
+        <button class="border-2 border-black w-1/2 rounded-full transition ease-in-out delay-115 hover:-translate-y-1 hover:scale-100 duration-150">
+            <strong>
+                sign up
+            </strong>
+        </button>
+    </div>
+</div>
+
+<div>
+    <h2 class="text-4xl py-6">
+        <strong>
+            Footwear
+        </strong>
+    </h2>
+</div>
 
 <div class="cardContainer flex flex-wrap space-y-4">
     {{#each shoe}}
     <div class="card w-full max-w-sm rounded-md overflow-hidden shadow-lg hover:bg-[#fff0bb]">
         <ul>
-            <li class="w-full">{{image}}<li>
+            <li class="w-full">{{image}}</li>
             <li class="text-left"><span>Brand:</span>{{shoe_name}}</li>
             <li class="text-left"><span>Shoe quantity:</span>{{shoe_qty}}</li>
             <li class="text-left"><span>Shoe size:</span>{{shoe_size}}</li>
             <li class="text-left"><span>Shoe color:</span>{{shoe_color}}</li>
-            <li class="text-left"><span>Shoe price:</span>{{shoe_price}}</li>
-            <li><button class="bg-[#ffa470] hover:bg-[#DB814D] w-1/2 rounded-full">Quick Add+</button></li>
+            <li class="text-left"><span>Shoe price:</span>R{{shoe_price}}</li>
+            <li><button class="bg-[#ffa470] hover:bg-[#DB814D] w-1/2 rounded-full"><strong>Quick Add+</strong></button></li>
         </ul>
     </div>
     {{/each}}
+</div>
+
+<div class="anchorTags">
+    <div class="flex">
+        <span><a href="">Prev</a></span>
+        <span><a href="">1</a></span>
+        <span><a href="">2</a></span>
+        <span><a href="">3</a></span>
+        <span><a href="">...</a></span>
+        <span><a href="">Next</a></span>
+    </div>
 </div>
