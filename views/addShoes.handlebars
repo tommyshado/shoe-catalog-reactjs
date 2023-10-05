@@ -1,5 +1,9 @@
-<form action="/api/shoes/addShoes" method="post">
-
+<form action="/addShoes" method="post">
+    {{#if messages.error}}
+    <p>
+        {{messages.error}}
+    </p>
+    {{/if}}
     <div>
         <label for="shoeName">
             <strong>
