@@ -42,4 +42,52 @@ router.post("/addShoes", async (req, res) => {
     };
 });
 
+// Router to filter for a shoe by brand name
+router.get("/brand/:brandname", async (req, res) => {
+    const { brandname } = req.params;
+    const responsed = await axios.get(API_END_POINT + `/brand/${brandname}`);
+    const filteredByBrand = responsed.data;
+    if (filteredByBrand) {
+        req.flash("success", "Successfully filtered for shoe brand.");
+        res.render("index", {
+            filteredShoe: filteredByBrand,
+        });
+    } else {
+        req.flash("error", "Shoe not available.");
+        res.redirect("/");
+    };
+});
+
+// Router to filter for a shoe by size
+router.get("/brand/size/:size", async (req, res) => {
+    const { size } = req.params;
+    const responsed = await axios.get(API_END_POINT + `/brand/size/${size}`);
+    const filteredBySize = responsed.data;
+    if (filteredBySize) {
+        req.flash("success", "Successfully filtered for a shoe size.");
+        res.render("index", {
+            filteredShoe: filteredBySize,
+        });
+    } else {
+        req.flash("error", "Shoe not available.");
+        res.redirect("/");
+    };
+});
+
+// Router to filter for a shoe by brand name and size
+router.get("/brand/:brandname/size/:size", async (req, res) => {
+    const { brandname, size } = req.params;
+    const responsed = await axios.get(API_END_POINT + `/brand/${brandname}/size/${size}`);
+    const filteredByBrandAndSize = responsed.data;
+    if (filteredByBrandAndSize) {
+        req.flash("success", "Successfully filtered for a shoe brand and size.");
+        res.render("index", {
+            filteredShoe: filteredByBrandAndSize,
+        });
+    } else {
+        req.flash("error", "Shoe not available.");
+        res.redirect("/");
+    };
+});
+
 export default router;
