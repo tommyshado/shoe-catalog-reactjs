@@ -25,7 +25,7 @@ router.get("/addShoes", (req, res) => {
 // Router to insert a shoe into the ui and database
 router.post("/addShoes", async (req, res) => {
     const { shoeName, image, qty, shoePrice, shoeColor, shoeSize } = req.body;
-    const responsed = await axios.post(API_END_POINT, {
+    const responded = await axios.post(API_END_POINT, {
         shoeName,
         image,
         qty,
@@ -33,7 +33,7 @@ router.post("/addShoes", async (req, res) => {
         shoeColor,
         shoeSize,
     });
-    if (responsed.data) {
+    if (responded.data) {
         req.flash("success", "Added a shoe successfully.");
         res.redirect("/");
     } else {
@@ -45,8 +45,8 @@ router.post("/addShoes", async (req, res) => {
 // Router to filter for a shoe by brand name
 router.get("/brand/:brandname", async (req, res) => {
     const { brandname } = req.params;
-    const responsed = await axios.get(API_END_POINT + `/brand/${brandname}`);
-    const filteredByBrand = responsed.data;
+    const responded = await axios.get(API_END_POINT + `/brand/${brandname}`);
+    const filteredByBrand = responded.data;
     if (filteredByBrand) {
         req.flash("success", "Successfully filtered for shoe brand.");
         res.render("index", {
@@ -61,8 +61,8 @@ router.get("/brand/:brandname", async (req, res) => {
 // Router to filter for a shoe by size
 router.get("/brand/size/:size", async (req, res) => {
     const { size } = req.params;
-    const responsed = await axios.get(API_END_POINT + `/brand/size/${size}`);
-    const filteredBySize = responsed.data;
+    const responded = await axios.get(API_END_POINT + `/brand/size/${size}`);
+    const filteredBySize = responded.data;
     if (filteredBySize) {
         req.flash("success", "Successfully filtered for a shoe size.");
         res.render("index", {
@@ -77,8 +77,8 @@ router.get("/brand/size/:size", async (req, res) => {
 // Router to filter for a shoe by brand name and size
 router.get("/brand/:brandname/size/:size", async (req, res) => {
     const { brandname, size } = req.params;
-    const responsed = await axios.get(API_END_POINT + `/brand/${brandname}/size/${size}`);
-    const filteredByBrandAndSize = responsed.data;
+    const responded = await axios.get(API_END_POINT + `/brand/${brandname}/size/${size}`);
+    const filteredByBrandAndSize = responded.data;
     if (filteredByBrandAndSize) {
         req.flash("success", "Successfully filtered for a shoe brand and size.");
         res.render("index", {
@@ -86,6 +86,21 @@ router.get("/brand/:brandname/size/:size", async (req, res) => {
         });
     } else {
         req.flash("error", "Shoe not available.");
+        res.redirect("/");
+    };
+});
+
+// Router to update shoe stock levels
+router.post("/brand/shoes/sold/updateInventory/:id", async (req, res) => {
+    const id = req.params.id;
+    const updated = await axios.post(API_END_POINT + `/brand/shoes/sold/updateInventory/`, {
+        id
+    });
+    if (updated.data) {
+        req.flash("success", "Added a shoe to the cart.");
+        res.redirect("/");
+    } else {
+        req.flash("error", "Shoe not added correctly.");
         res.redirect("/");
     };
 });
