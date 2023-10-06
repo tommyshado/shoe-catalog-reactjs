@@ -39,35 +39,72 @@
 
 <div class="main">
     <div class="filterContainer">
+        <div>
+            <strong>Brands</strong>
 
-    </div>
-    <div class="shoesContainer flex">
-        <div class="cardContainer flex flex-wrap space-y-4">
-            {{#each shoe}}
-            <div class="card w-full max-w-sm rounded-md overflow-hidden shadow-lg hover:bg-[#fff0bb]">
-                <ul>
-                    <li class="w-full"><img src="{{image}}" alt="shoe" srcset=""></li>
-                    <li class="text-left"><span>Brand:</span>{{shoe_name}}</li>
-                    <li class="text-left"><span>Shoe quantity:</span>{{shoe_qty}}</li>
-                    <li class="text-left"><span>Shoe size:</span>{{shoe_size}}</li>
-                    <li class="text-left"><span>Shoe color:</span>{{shoe_color}}</li>
-                    <li class="text-left"><span>Shoe price:</span>R{{shoe_price}}</li>
-                    <li><button class="bg-[#ffa470] hover:bg-[#DB814D] w-1/2 rounded-full"><strong>Quick Add+</strong></button></li>
-                </ul>
-            </div>
-            {{/each}}
+            <label for="">
+                <input
+                  type="checkbox"
+                  name=""
+                  value=""
+                />
+            </label>
         </div>
+
+        <div>
+            <strong>Sizes</strong>
+            <label for="">
+                <input
+                  type="checkbox"
+                  name=""
+                  value=""
+                />
+            </label>
+        </div>
+
+        <div>
+            <strong>Prices</strong>
+            <label for="">
+                <input
+                  type="checkbox"
+                  name=""
+                  value=""
+                />
+            </label>
+        </div>
+
+        <button type="submit">Search</button>
     </div>
 
-    <div class="anchorTags">
-        <div class="flex">
-            <span><a href="">Prev</a></span>
-            <span><a href="">1</a></span>
-            <span><a href="">2</a></span>
-            <span><a href="">3</a></span>
-            <span><a href="">...</a></span>
-            <span><a href="">4</a></span>
-            <span><a href="">Next</a></span>
+    <div>
+        <div class="shoesContainer flex">
+            <div class="cardContainer flex flex-wrap space-y-4">
+                {{#each shoe}}
+                <div class="card w-full max-w-sm rounded-md overflow-hidden shadow-lg hover:bg-[#fff0bb]">
+                    <ul>
+                        <li class="w-full"><img src="{{image}}" alt="shoe" srcset=""></li>
+                        <li class="text-left"><span>Brand:</span>{{shoe_name}}</li>
+                        <li class="text-left"><span>Shoe quantity:</span>{{shoe_qty}}</li>
+                        <li class="text-left"><span>Shoe size:</span>{{shoe_size}}</li>
+                        <li class="text-left"><span>Shoe color:</span>{{shoe_color}}</li>
+                        <li class="text-left"><span>Shoe price:</span>R{{shoe_price}}</li>
+                        <li><button class="bg-[#ffa470] hover:bg-[#DB814D] w-1/2 rounded-full"><strong>Quick Add+</strong></button></li>
+                    </ul>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="anchorTags">
+            <div class="flex">
+                <span><a href="">Prev</a></span>
+                <span><a href="">1</a></span>
+                <span><a href="">2</a></span>
+                <span><a href="">3</a></span>
+                <span><a href="">...</a></span>
+                <span><a href="">4</a></span>
+                <span><a href="">Next</a></span>
+            </div>
         </div>
     </div>
 </div>
