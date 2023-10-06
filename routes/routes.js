@@ -93,9 +93,7 @@ router.get("/brand/:brandname/size/:size", async (req, res) => {
 // Router to update shoe stock levels
 router.post("/brand/shoes/sold/updateInventory/:id", async (req, res) => {
     const id = req.params.id;
-    const updated = await axios.post(API_END_POINT + `/brand/shoes/sold/updateInventory/`, {
-        id
-    });
+    const updated = await axios.post(API_END_POINT + `/brand/shoes/sold/updateInventory/${id}`);
     if (updated.data) {
         req.flash("success", "Added a shoe to the cart.");
         res.redirect("/");
