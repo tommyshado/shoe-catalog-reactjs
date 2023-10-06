@@ -94,12 +94,26 @@ router.get("/brand/:brandname/size/:size", async (req, res) => {
 router.post("/brand/shoes/sold/updateInventory/:id", async (req, res) => {
     const id = req.params.id;
     const updated = await axios.post(API_END_POINT + `/brand/shoes/sold/updateInventory/${id}`);
-    if (updated.data) {
+    if (updated.status === "success") {
         req.flash("success", "Added a shoe to the cart.");
         res.redirect("/");
     } else {
         req.flash("error", "Shoe not added correctly.");
         res.redirect("/");
+    };
+});
+
+// Router to remove a shoe from the shoes display - admin has rights to remove a shoe
+router.post("/brand/shoes/sold/:id", async (req, res) => {
+    const id = req.params.id;
+    const soldShoe = await axios.post(API_END_POINT, + `brand/shoes/sold/${id}`);
+    if (soldShoe.status === "success") {
+        req.flash("success", "Successfully removed a shoe.");
+        // Navigate into the admins page
+        res.redirect("/admin");
+    } else {
+        req.flash("error", "Try to remove a shoe again.");
+        res.redirect("/admin");
     };
 });
 
