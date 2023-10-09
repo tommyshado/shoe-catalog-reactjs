@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
     const shoes = (await axios.get(API_END_POINT)).data;
     // RENDER the shoes in the index page
     res.render("index", {
-        shoe: shoes,
+        shoes: shoes,
     });
 });
 
@@ -50,7 +50,7 @@ router.get("/brand/:brandname", async (req, res) => {
     if (filteredByBrand) {
         req.flash("success", "Successfully filtered for shoe brand.");
         res.render("index", {
-            filteredShoe: filteredByBrand,
+            shoes: filteredByBrand,
         });
     } else {
         req.flash("error", "Shoe not available.");
@@ -66,7 +66,7 @@ router.get("/brand/size/:size", async (req, res) => {
     if (filteredBySize) {
         req.flash("success", "Successfully filtered for a shoe size.");
         res.render("index", {
-            filteredShoe: filteredBySize,
+            shoes: filteredBySize,
         });
     } else {
         req.flash("error", "Shoe not available.");
@@ -82,7 +82,7 @@ router.get("/brand/:brandname/size/:size", async (req, res) => {
     if (filteredByBrandAndSize) {
         req.flash("success", "Successfully filtered for a shoe brand and size.");
         res.render("index", {
-            filteredShoe: filteredByBrandAndSize,
+            shoes: filteredByBrandAndSize,
         });
     } else {
         req.flash("error", "Shoe not available.");

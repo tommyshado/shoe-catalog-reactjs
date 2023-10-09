@@ -79,10 +79,10 @@
     <div>
         <div class="shoesContainer flex">
             <div class="cardContainer flex flex-wrap space-y-4">
-                {{#each shoe}}
+                {{#each shoes}}
                 <div class="card w-full max-w-sm rounded-md overflow-hidden shadow-lg hover:bg-[#fff0bb]">
                     <ul>
-                        <li class="w-full"><img src="{{image}}" alt="shoe" srcset=""></li>
+                        <li class="w-full"><img src="{{image}}" alt="{{shoe_name}}" srcset=""></li>
                         <li class="text-left"><span>Brand:</span>{{shoe_name}}</li>
                         <li class="text-left"><span>Shoe quantity:</span>{{shoe_qty}}</li>
                         <li class="text-left"><span>Shoe size:</span>{{shoe_size}}</li>
