@@ -80,6 +80,7 @@ router.get("/brand/:brandname/size/:size", async (req, res) => {
     const responded = await axios.get(API_END_POINT + `/brand/${brandname}/size/${size}`);
     const filteredByBrandAndSize = responded.data;
     if (filteredByBrandAndSize) {
+        console.log(filteredByBrandAndSize);
         req.flash("success", "Successfully filtered for a shoe brand and size.");
         res.render("index", {
             shoes: filteredByBrandAndSize,
