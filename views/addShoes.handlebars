@@ -1,33 +1,89 @@
 <form action="/addShoes" method="post">
+  <div>
+    {{#if messages.error}}
+      <p>
+        {{messages.error}}
+      </p>
+    {{/if}}
     <div>
-        {{#if messages.error}}
-        <p>
-            {{messages.error}}
-        </p>
-        {{/if}}
-        <div>
-            <label for="shoeName">
-                <strong>
-                    Add a shoe for display
-                </strong>
-            </label>
+      <label for="shoeName">
+        <strong>
+          Add a shoe for display
+        </strong>
+      </label>
 
-            <div class="">
-                <input class="" name="shoeName" type="text" placeholder="enter shoe name" required />
-                <input class="" name="image" type="text" placeholder="enter image url" required />
-                <input class="" name="qty" type="text" placeholder="enter number of stock" required />
-                <input class="" name="shoePrice" type="text" placeholder="enter a shoe price" required />
-                <input class="" name="shoeColor" type="text" placeholder="enter a shoe color" required />
-                <input class="" name="shoeSize" type="text" placeholder="enter a shoe size" required />
-            </div>
+      <div class="">
+        <div>
+          <input
+            class=""
+            name="shoeName"
+            type="text"
+            placeholder="enter shoe name"
+            required
+          />
+        </div>
+        <div>
+          <input
+            class=""
+            name="image"
+            type="text"
+            placeholder="enter image url"
+            required
+          />
+
+        </div>
+        <div>
+          <input
+            class=""
+            name="qty"
+            type="text"
+            placeholder="enter number of stock"
+            required
+          />
+
         </div>
 
         <div>
-            <button type="submit">
-                <strong>
-                    Add a shoe
-                </strong>
-            </button>
+          <input
+            class=""
+            name="shoePrice"
+            type="text"
+            placeholder="enter a shoe price"
+            required
+          />
+
         </div>
+
+        <div>
+          <input
+            class=""
+            name="shoeColor"
+            type="text"
+            placeholder="enter a shoe color"
+            required
+          />
+
+        </div>
+
+        <div>
+          <input
+            class=""
+            name="shoeSize"
+            type="text"
+            placeholder="enter a shoe size"
+            required
+          />
+
+        </div>
+      </div>
     </div>
+
+    <div>
+      <button type="submit">
+        <strong>
+          Add a shoe
+        </strong>
+      </button>
+    </div>
+  </div>
 </form>
