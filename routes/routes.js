@@ -50,7 +50,7 @@ router.get("/brand/:brandname", async (req, res) => {
     if (filteredByBrand) {
         req.flash("success", "Successfully filtered for shoe brand.");
         res.render("index", {
-            shoes: filteredByBrand,
+            shoes: filteredByBrand.data,
         });
     } else {
         req.flash("error", "Shoe not available.");
@@ -66,7 +66,7 @@ router.get("/brand/size/:size", async (req, res) => {
     if (filteredBySize) {
         req.flash("success", "Successfully filtered for a shoe size.");
         res.render("index", {
-            shoes: filteredBySize,
+            shoes: filteredBySize.data,
         });
     } else {
         req.flash("error", "Shoe not available.");
@@ -83,7 +83,7 @@ router.get("/brand/:brandname/size/:size", async (req, res) => {
         console.log(filteredByBrandAndSize);
         req.flash("success", "Successfully filtered for a shoe brand and size.");
         res.render("index", {
-            shoes: filteredByBrandAndSize,
+            shoes: filteredByBrandAndSize.data,
         });
     } else {
         req.flash("error", "Shoe not available.");
