@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
     const shoes = (await axios.get(API_END_POINT)).data;
     // RENDER the shoes in the index page
     res.render("index", {
-        shoes: shoes,
+        shoes: shoes.data,
     });
 });
 
