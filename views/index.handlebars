@@ -7,14 +7,14 @@
         </h1>
     </div>
     
-    <div class="w-1/6">
+    <div class="w-1/4">
         <button class="bg-[#DB814D] w-1/2 rounded-full transition ease-in-out delay-115 hover:-translate-y-1 hover:scale-100 duration-150">
             <strong>
                 log in
             </strong>
         </button>
     </div>
-    <div class="w-1/6">
+    <div class="w-1/4">
         <button class="border-2 border-black w-1/2 rounded-full transition ease-in-out delay-115 hover:-translate-y-1 hover:scale-100 duration-150">
             <strong>
                 sign up
@@ -29,16 +29,24 @@
             Footwear
         </strong>
     </h2>
+    <div>
+        <strong>
+            <span class="hover:text-[#DB814D] text-xl"><a href="">ALL</a></span>
+            <span class="hover:text-[#DB814D] text-xl"><a href="">MEN</a></span>
+            <span class="hover:text-[#DB814D] text-xl"><a href="">WOMEN</a></span>
+            <span class="hover:text-[#DB814D] text-xl"><a href="">KIDS</a></span>
+        </strong>
+    </div>
 </div>
 
 {{#if messages.success}}
-<p class="flash-messages">
+<p class="flash-messages text-[#0e923c]">
     {{messages.success}}
 </p>
 {{/if}}
 
 <div class="main">
-    <div class="filterContainer">
+    {{!-- <div class="filterContainer">
         <div>
             <strong>Brands</strong>
 
@@ -74,21 +82,21 @@
         </div>
 
         <button type="submit">Search</button>
-    </div>
+    </div> --}}
 
     <div>
-        <div class="shoesContainer flex">
+        <div class="shoesContainer">
             <div class="cardContainer flex flex-wrap space-y-4">
                 {{#each shoes}}
                 <div class="card w-full max-w-sm rounded-md overflow-hidden shadow-lg hover:bg-[#fff0bb]">
                     <ul>
-                        <li class="w-full"><img src="{{image}}" alt="{{shoe_name}}" srcset=""></li>
-                        <li class="text-left"><span>Brand:</span>{{shoe_name}}</li>
-                        <li class="text-left"><span>Shoe quantity:</span>{{shoe_qty}}</li>
-                        <li class="text-left"><span>Shoe size:</span>{{shoe_size}}</li>
-                        <li class="text-left"><span>Shoe color:</span>{{shoe_color}}</li>
-                        <li class="text-left"><span>Shoe price:</span>R{{shoe_price}}</li>
-                        <li><button class="bg-[#ffa470] hover:bg-[#DB814D] w-1/2 rounded-full"><strong>Quick Add+</strong></button></li>
+                        <a href="">
+                            <li class="w-full"><img src="{{image}}" alt="{{shoe_name}}" srcset=""></li>
+                            <li class="text-left text-xl"><strong>{{shoe_name}}</strong></li>
+                            <li class="text-left"><span><a href="">{{description}}</a></li>
+                            <li class="text-left"><strong>R{{shoe_price}}</strong></li>
+                            <li><button class="bg-[#ffa470] hover:bg-[#DB814D] w-1/2 rounded-full"><strong>Quick Add+</strong></button></li>
+                        </a>
                     </ul>
                 </div>
                 {{/each}}
@@ -96,14 +104,16 @@
         </div>
 
         <div class="anchorTags">
-            <div class="flex">
-                <span><a href="">Prev</a></span>
-                <span><a href="">1</a></span>
-                <span><a href="">2</a></span>
-                <span><a href="">3</a></span>
-                <span><a href="">...</a></span>
-                <span><a href="">4</a></span>
-                <span><a href="">Next</a></span>
+            <div>
+                <strong>
+                    <span class="hover:text-[#DB814D]"><a href="">Prev</a></span>
+                    <span class="hover:text-[#DB814D]"><a href="">1</a></span>
+                    <span class="hover:text-[#DB814D]"><a href="">2</a></span>
+                    <span class="hover:text-[#DB814D]"><a href="">3</a></span>
+                    <span class="hover:text-[#DB814D]"><a href="">...</a></span>
+                    <span class="hover:text-[#DB814D]"><a href="">4</a></span>
+                    <span class="hover:text-[#DB814D]"><a href="">Next</a></span>
+                </strong>
             </div>
         </div>
     </div>
