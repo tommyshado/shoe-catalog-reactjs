@@ -24,10 +24,12 @@ router.get("/addShoes", (req, res) => {
 
 // Router to insert a shoe into the ui and database
 router.post("/addShoes", async (req, res) => {
-    const { shoeName, image, qty, shoePrice, shoeColor, shoeSize } = req.body;
+    const { shoeName, image, description, ageGroup, qty, shoePrice, shoeColor, shoeSize } = req.body;
     const responded = await axios.post(API_END_POINT, {
         shoeName,
         image,
+        description,
+        ageGroup,
         qty,
         shoePrice,
         shoeColor,
