@@ -158,4 +158,41 @@ router.get("/brand/:brandname/color/:color/size/:size", async (req, res) => {
     };
 });
 
+router.get("/brand/catagory/:men", async (req, res) => {
+    const { men } = req.params;
+    const responded = (await axios.get(API_END_POINT + `/brand/catagory/${men}`)).data.data;
+    console.log("men shoes", responded);
+
+    if (responded) {
+        req.flash("success", "Successfully filtered by catagory.");
+        res.render("index", {
+            shoes: responded
+        });
+    }
+});
+
+router.get("/brand/catagory/:men", async (req, res) => {
+    const { women } = req.params;
+    const responded = (await axios.get(API_END_POINT + `/brand/catagory/${women}`)).data.data;
+
+    if (responded) {
+        req.flash("success", "Successfully filtered by catagory.");
+        res.render("index", {
+            shoes: responded
+        });
+    }
+});
+
+router.get("/brand/catagory/:men", async (req, res) => {
+    const { kids } = req.params;
+    const responded = (await axios.get(API_END_POINT + `/brand/catagory/${kids}`)).data.data;
+
+    if (responded) {
+        req.flash("success", "Successfully filtered by catagory.");
+        res.render("index", {
+            shoes: responded
+        });
+    }
+});
+
 export default router;
