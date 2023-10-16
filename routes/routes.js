@@ -109,7 +109,7 @@ router.post("/brand/shoes/sold/updateInventory/:id", async (req, res) => {
 // Router to remove a shoe from the shoes display - admin has rights to remove a shoe
 router.post("/brand/shoes/sold/:id", async (req, res) => {
     const id = req.params.id;
-    const soldShoe = await axios.post(API_END_POINT, + `brand/shoes/sold/${id}`);
+    const soldShoe = await axios.post(API_END_POINT + `/brand/shoes/sold/${id}`);
     if (soldShoe.status === "success") {
         req.flash("success", "Successfully removed a shoe.");
         // Navigate into the admins page
@@ -117,6 +117,44 @@ router.post("/brand/shoes/sold/:id", async (req, res) => {
     } else {
         req.flash("error", "Try to remove a shoe again.");
         res.redirect("/admin");
+    };
+});
+
+// Routers to filter by colors
+router.get("/brand/color/:color", async (req, res) => {
+    const color = req.params.color;
+    const responded = await axios.get(API_END_POINT + `/brand/color/${color}`);
+    console.log(responded)
+    const filtered = responded.data
+    if (filtered) {
+        req.flash("success", "Successfully filtered by color.");
+        res.render("index", {
+            shoes: filtered.data
+        });
+    };
+});
+
+router.get("/brand/:brandname/color/:color", async (req, res) => {
+    const { brandname, color } = req.params;
+    const responded = await axios.get(API_END_POINT + `/brand/${brandname}/color/${color}`);
+    const filtered = responded.data
+    if (filtered) {
+        req.flash("success", "Successfully filtered by color and brand.");
+        res.render("index", {
+            shoes: filtered.data
+        });
+    };
+});
+
+router.get("/brand/:brandname/color/:color/size/:size", async (req, res) => {
+    const { brandname, color, size } = req.params;
+    const responded = await axios.get(API_END_POINT + `/brand/${brandname}/color/${color}/size/${size}`);
+    const filtered = responded.data
+    if (filtered) {
+        req.flash("success", "Successfully filtered by color.");
+        res.render("index", {
+            shoes: filtered.data
+        });
     };
 });
 
