@@ -1,3 +1,5 @@
+
+{{!-- headings component --}}
 <div class="flex items-center justify-center space-y-4">
     <div class="w-1/2">
         <h1 class="text-6xl">
@@ -23,22 +25,24 @@
     </div>
 </div>
 
+<h2 class="text-4xl py-6">
+    <strong>
+        Footwear
+    </strong>
+</h2>
+
+{{!-- catagory filtering --}}
 <div>
-    <h2 class="text-4xl py-6">
-        <strong>
-            Footwear
-        </strong>
-    </h2>
-    <div>
-        <strong>
-            <span class="hover:text-[#DB814D] text-xl"><a href="/">ALL</a></span>
-            <span class="hover:text-[#DB814D] text-xl"><a href="/brand/catagory/men">MEN</a></span>
-            <span class="hover:text-[#DB814D] text-xl"><a href="/brand/catagory/women">WOMEN</a></span>
-            <span class="hover:text-[#DB814D] text-xl"><a href="/brand/catagory/kids">KIDS</a></span>
-        </strong>
-    </div>
+    <strong>
+        <span class="hover:text-[#DB814D] text-xl"><a href="/">ALL</a></span>
+        <span class="hover:text-[#DB814D] text-xl"><a href="/brand/catagory/men">MEN</a></span>
+        <span class="hover:text-[#DB814D] text-xl"><a href="/brand/catagory/women">WOMEN</a></span>
+        <span class="hover:text-[#DB814D] text-xl"><a href="/brand/catagory/kids">KIDS</a></span>
+    </strong>
 </div>
 
+
+{{!-- messages --}}
 {{#if messages.success}}
 <p class="flash-messages text-[#0e923c]">
     {{messages.success}}
@@ -46,75 +50,47 @@
 {{/if}}
 
 <div class="main">
-    {{!-- <div class="filterContainer">
-        <div>
-            <strong>Brands</strong>
 
-            <label for="">
-                <input
-                  type="checkbox"
-                  name=""
-                  value=""
-                />
-            </label>
-        </div>
+    {{!-- filtering component --}}
+    <div class="filterContainer">
+        <svg role="img" height="24" width="24" aria-hidden="true" class="Svg-sc-ytk21e-0 haNxPq CIVozJ8XNPJ60uMN23Yg" viewBox="0 0 16 16" data-encore-id="icon">
+            <path d="M7 1.75a5.25 5.25 0 1 0 0 10.5 5.25 5.25 0 0 0 0-10.5zM.25 7a6.75 6.75 0 1 1 12.096 4.12l3.184 3.185a.75.75 0 1 1-1.06 1.06L11.304 12.2A6.75 6.75 0 0 1 .25 7z"></path>
+        </svg>
+    </div>
 
-        <div>
-            <strong>Sizes</strong>
-            <label for="">
-                <input
-                  type="checkbox"
-                  name=""
-                  value=""
-                />
-            </label>
-        </div>
-
-        <div>
-            <strong>Prices</strong>
-            <label for="">
-                <input
-                  type="checkbox"
-                  name=""
-                  value=""
-                />
-            </label>
-        </div>
-
-        <button type="submit">Search</button>
-    </div> --}}
-
-    <div>
-        <div class="shoesContainer">
-            <div class="cardContainer flex flex-wrap space-y-4">
-                {{#each shoes}}
+    {{!-- Shoes component --}}
+    <div class="shoesContainer">
+        <div class="cardContainer flex flex-wrap space-y-4">
+            {{#each shoes}}
                 <div class="card w-full max-w-sm rounded-md overflow-hidden shadow-lg hover:bg-[#fff0bb]">
                     <ul>
-                        <a href="">
+                        <a href="/shoe/{{shoe_name}}">
                             <li class="w-full"><img src="{{image}}" alt="{{shoe_name}}" srcset=""></li>
                             <li class="text-left text-xl"><strong>{{shoe_name}}</strong></li>
                             <li class="text-left"><span><a href="">{{description}}</a></li>
                             <li class="text-left"><strong>R{{shoe_price}}</strong></li>
-                            <li><button class="bg-[#ffa470] hover:bg-[#DB814D] w-1/2 rounded-full"><strong>Quick Add+</strong></button></li>
+
+                            <form action="/brand/shoes/sold/updateInventory/{{shoe_id}}" method="post">
+                                <li><button class="bg-[#ffa470] hover:bg-[#DB814D] w-1/2 rounded-full"><strong>Quick Add+</strong></button></li>
+                            </form>
                         </a>
                     </ul>
                 </div>
-                {{/each}}
-            </div>
-        </div>
-
-        <div class="anchorTags">
-            <div>
-                <strong>
-                    <span class="hover:text-[#DB814D]"><a href="">Prev</a></span>
-                    <span class="hover:text-[#DB814D]"><a href="">1</a></span>
-                    <span class="hover:text-[#DB814D]"><a href="">2</a></span>
-                    <span class="hover:text-[#DB814D]"><a href="">3</a></span>
-                    <span class="hover:text-[#DB814D]"><a href="">...</a></span>
-                    <span class="hover:text-[#DB814D]"><a href="">4</a></span>
-                    <span class="hover:text-[#DB814D]"><a href="">Next</a></span>
-                </strong>
-            </div>
+            {{/each}}
         </div>
     </div>
+</div>
+
+
+{{!-- Anchor tag component --}}
+<div class="anchorTags">
+    <strong>
+        <span class="hover:text-[#DB814D]"><a href="">Prev</a></span>
+        <span class="hover:text-[#DB814D]"><a href="">1</a></span>
+        <span class="hover:text-[#DB814D]"><a href="">2</a></span>
+        <span class="hover:text-[#DB814D]"><a href="">3</a></span>
+        <span class="hover:text-[#DB814D]"><a href="">...</a></span>
+        <span class="hover:text-[#DB814D]"><a href="">4</a></span>
+        <span class="hover:text-[#DB814D]"><a href="">Next</a></span>
+    </strong>
 </div>
