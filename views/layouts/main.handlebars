@@ -11,7 +11,9 @@
     <script src="//unpkg.com/alpinejs" defer></script>
 
   </head>
-  <body class="bg-[#fefefe]">
+  <body class="bg-[#fefefe]" x-data="{ openModal: false,
+                                       hideButton: true
+                                     }">
     <center>
       <div class="container">
         {{{body}}}
