@@ -53,21 +53,29 @@
 
     {{!-- filtering component --}}
     <div class="filterContainer">
+
+        {{!-- Checkboxes filters --}}
+        <div class="filters">
+
+        </div>
+
         {{!-- Search filter --}}
         <div class="searchForShoe">
             <div x-show="openModal" style="display: none">
                 <form action="/brand" method="post">
-                    <input type="text" name="brandname" placeholder="Search a brand name">
+                    <input class="focus:bg-white rounded-md border-2" type="text" name="brandname" placeholder="Search a brand name">
 
-                    <button type="submit">
-                        <svg role="img" height="16" width="16" aria-hidden="true" class="Svg-sc-ytk21e-0 haNxPq CIVozJ8XNPJ60uMN23Yg" viewBox="0 0 16 16" data-encore-id="icon">
-                            <path d="M7 1.75a5.25 5.25 0 1 0 0 10.5 5.25 5.25 0 0 0 0-10.5zM.25 7a6.75 6.75 0 1 1 12.096 4.12l3.184 3.185a.75.75 0 1 1-1.06 1.06L11.304 12.2A6.75 6.75 0 0 1 .25 7z"></path>
-                        </svg>
-                    </button>
+                    <div>
+                        <button type="submit">
+                            <svg role="img" height="16" width="16" aria-hidden="true" class="Svg-sc-ytk21e-0 haNxPq CIVozJ8XNPJ60uMN23Yg" viewBox="0 0 16 16" data-encore-id="icon">
+                                <path d="M7 1.75a5.25 5.25 0 1 0 0 10.5 5.25 5.25 0 0 0 0-10.5zM.25 7a6.75 6.75 0 1 1 12.096 4.12l3.184 3.185a.75.75 0 1 1-1.06 1.06L11.304 12.2A6.75 6.75 0 0 1 .25 7z"></path>
+                            </svg>
+                        </button>
 
-                    <a @click="openModal = false; hideButton = true">
-                        <svg role="img" height="16" width="16" aria-hidden="true" viewBox="0 0 16 16" data-encore-id="icon" class="Svg-sc-ytk21e-0 haNxPq"><path d="M1.47 1.47a.75.75 0 0 1 1.06 0L8 6.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L9.06 8l5.47 5.47a.75.75 0 1 1-1.06 1.06L8 9.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L6.94 8 1.47 2.53a.75.75 0 0 1 0-1.06z"></path></svg>
-                    </a>
+                        <a @click="openModal = false; hideButton = true">
+                            <svg role="img" height="16" width="16" aria-hidden="true" viewBox="0 0 16 16" data-encore-id="icon" class="Svg-sc-ytk21e-0 haNxPq"><path d="M1.47 1.47a.75.75 0 0 1 1.06 0L8 6.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L9.06 8l5.47 5.47a.75.75 0 1 1-1.06 1.06L8 9.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L6.94 8 1.47 2.53a.75.75 0 0 1 0-1.06z"></path></svg>
+                        </a>
+                    </div>
                 </form>
             </div>
 
@@ -88,7 +96,8 @@
                         <a href="/shoe/{{shoe_name}}">
                             <li class="w-full"><img src="{{image}}" alt="{{shoe_name}}" srcset=""></li>
                             <li class="text-left text-xl"><strong>{{shoe_name}}</strong></li>
-                            <li class="text-left"><span><a href="">{{description}}</a></li>
+                            <li class="text-left"><span><a href="/shoe/{{shoe_name}}">{{description}}</a></li>
+                            <li class="text-left"><span><strong>In stock: {{shoe_qty}}</strong></li>
                             <li class="text-left"><strong>R{{shoe_price}}</strong></li>
 
                             <form action="/brand/shoes/sold/updateInventory/{{shoe_id}}" method="post">

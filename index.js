@@ -1,9 +1,10 @@
 import express from "express";
 import exphbs from "express-handlebars";
-import router from "./routes/routes.js";
+import router from "./routes/shoes.js";
 import bodyParser from "body-parser";
 import flash from "express-flash";
 import session from "express-session";
+import cartRouter from "./routes/cart.js";
 
 // APP instance
 const app = express();
@@ -39,6 +40,7 @@ app.use(bodyParser.json());
 
 // Routes Middlewares
 app.use("/", router);
+app.use("/", cartRouter);
 
 // PORT variable
 const PORT = process.env.PORT || 3000;
