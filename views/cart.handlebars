@@ -1,6 +1,9 @@
-{{#each cart}}
-<div>
-    {{shoe_name}}
-</div>
-<span>{{quantity}}</span>
-{{/each}}
+
+<form action="/username/{{username}}/payment" method="post">
+    {{#each cart}}
+    <div>
+        {{shoe_name}}
+    </div>
+    <span>{{quantity}}</span>
+    {{/each}}
+</form>

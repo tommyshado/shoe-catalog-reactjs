@@ -1,6 +1,8 @@
 import { Router } from "express";
 import axios from "axios";
 
+// Jsonwebtoken import
+import jwt from "jsonwebtoken";
 
 // Login Router instance
 const loginRouter = Router();
@@ -25,8 +27,30 @@ loginRouter.post("/login", async (req, res) => {
         email,
         password
     });
+    const loggedInUser = responded.data.token;
 
-    res.redirect("/");
+    if (loggedInUser) {
+        const verify = jwt.verify(loggedInUser, process.env.TOKEN);
+        if (verify) {
+            res.redirect("/");
+        } else {
+            res.render("login");
+        };
+
+    } else if (!loggedInUser) {
+        req.flash("error", "Password or email not valid.");
+        // Show the log in page
+        res.render("login");
+
+    } else {
+        // Get the error
+        const { error } = responded.data;
+        // Display the error message to the UI
+        if (error) req.flash("error", `${error}`);
+
+        // Show the log in page
+        res.render("login");
+    };
 });
 
 

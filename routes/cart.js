@@ -12,7 +12,8 @@ cartRouter.get("/username/:username", async (req, res) => {
     const username = req.params.username;
     const cart = (await axios.get(cartAPI + `/username/${username}`)).data.cart;
     res.render("cart", {
-        cart: cart
+        cart: cart,
+        username: username
     });
 });
 
