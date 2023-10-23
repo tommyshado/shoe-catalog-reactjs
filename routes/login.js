@@ -4,6 +4,9 @@ import axios from "axios";
 // Jsonwebtoken import
 import jwt from "jsonwebtoken";
 
+// dotenv/config import
+import "dotenv/config"
+
 // Login Router instance
 const loginRouter = Router();
 
@@ -32,6 +35,9 @@ loginRouter.post("/login", async (req, res) => {
     if (loggedInUser) {
         const verify = jwt.verify(loggedInUser, process.env.TOKEN);
         if (verify) {
+            // Display success message to the UI
+            req.flash("success", "Logged in successfully.");
+            // Get back to the home route
             res.redirect("/");
         } else {
             res.render("login");
