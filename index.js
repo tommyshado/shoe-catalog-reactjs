@@ -6,6 +6,10 @@ import flash from "express-flash";
 import session from "express-session";
 import cartRouter from "./routes/cart.js";
 
+// Login and signup imports
+import loginRouter from "./routes/login.js";
+import signupRouter from "./routes/signup.js";
+
 // APP instance
 const app = express();
 
@@ -41,6 +45,10 @@ app.use(bodyParser.json());
 // Routes Middlewares
 app.use("/", router);
 app.use("/", cartRouter);
+
+// Login and signup middlewares
+app.use("/", loginRouter);
+app.use("/", signupRouter);
 
 // PORT variable
 const PORT = process.env.PORT || 3000;

@@ -1,0 +1,64 @@
+<form action="/login" method="post">
+    <h1>Login...</h1>
+
+    {{!-- messages component --}}
+    {{#if messages.error}}
+        <div class="messages danger-messages">
+            {{messages.error}}
+        </div>
+    {{/if}}
+
+    {{#if messages.success}}
+        <div class="messages success-messages">
+            {{messages.success}}
+        </div>
+    {{/if}}
+
+    {{!-- login component --}}
+    <div class="py-4">
+        <label name="emailOrName" for="email-or-username"><strong>Username</strong></label>
+        <div>
+            <input
+            class="text-[#000000] bg-[#5b5b5b] focus:bg-white rounded-md border-2"
+            name="name"
+            type="text"
+            placeholder="Enter your name"
+            />
+        </div>
+    </div>
+
+    <div class="py-4">
+        <label name="email" for="email"><strong>Email</strong></label>
+        <div>
+            <input
+            class="text-[#000000] bg-[#5b5b5b] focus:bg-white rounded-md border-2"
+            name="email"
+            type="text"
+            placeholder="Enter your name"
+            />
+        </div>
+    </div>
+
+    <div class="py-4">
+        <label for="password"><strong>Password</strong></label>
+        <div class="relative">
+            <input
+            class="text-[#000000] bg-[#5b5b5b] focus:bg-white rounded-md border-2"
+            name="password"
+            type="text"
+            placeholder="Enter your password"
+            />
+            </div>
+        </div>
+    </div>
+
+    <div class="py-12">
+        <button class="bg-[#ffa470] hover:bg-[#DB814D] w-1/6 rounded-full" type="submit"><strong>Login</strong></button>
+    </div>
+
+    <div>
+        <span><a class="text-[#DB814D]" href="/generatePassword">Forgot your password?</a></span><br/>
+        <span class="text-[#242424]"><strong>Not registered?</strong></span>
+        <a class="text-[#DB814D]" href="/signup">Register here</a>
+    </div>
+</form>
