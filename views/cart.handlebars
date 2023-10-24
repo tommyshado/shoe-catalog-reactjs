@@ -1,9 +1,68 @@
 
+<table class="table-auto">
+  <tr>
+    <th>Brand name</th>
+    <th>Increase</th>
+    <th>Decrease</th>
+    <th>Quantity</th>
+    <th>Total</th>
+  </tr>
+
+  {{#each cart}}
+  <tr>
+    <td>{{shoe_name}}</td>
+    <td>
+
+        {{!-- Form for adding to the cart --}}
+      <form action="/username/{{username}}/shoeId/{{shoe_id}}/add" method="post">
+        <button type="submit">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            class="bi bi-plus-lg"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+            />
+          </svg>
+        </button>
+      </form>
+    </td>
+
+    <td>
+
+        {{!-- Form for removing from the cart --}}
+      <form action="/username/{{username}}/shoeId/{{shoe_id}}/remove" method="post">
+        <button type="submit">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            class="bi bi-dash"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
+            />
+          </svg>
+        </button>
+      </form>
+    </td>
+    <td>{{quantity}}</td>
+    <td>{{total}}</td>
+  </tr>
+  {{/each}}
+</table>
+<label>Total</label><span>{{cartTotal}}</span>
+
+{{!-- Form for Checkout --}}
 <form action="/username/{{username}}/payment" method="post">
-    {{#each cart}}
-    <div>
-        {{shoe_name}}
-    </div>
-    <span>{{quantity}}</span>
-    {{/each}}
+    <button type="submit">
+        Checkout
+    </button>
 </form>
