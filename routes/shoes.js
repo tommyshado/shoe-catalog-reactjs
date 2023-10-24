@@ -77,6 +77,7 @@ router.get("/brand/size/:size", async (req, res) => {
     const { size } = req.params;
     const responded = await axios.get(shoesAPI + `/brand/size/${size}`);
     const filteredBySize = responded.data;
+
     if (filteredBySize) {
         req.flash("success", "Successfully filtered for a shoe size.");
         res.render("index", {
@@ -93,8 +94,8 @@ router.get("/brand/:brandname/size/:size", async (req, res) => {
     const { brandname, size } = req.params;
     const responded = await axios.get(shoesAPI + `/brand/${brandname}/size/${size}`);
     const filteredByBrandAndSize = responded.data;
+
     if (filteredByBrandAndSize) {
-        console.log(filteredByBrandAndSize);
         req.flash("success", "Successfully filtered for a shoe brand and size.");
         res.render("index", {
             shoes: filteredByBrandAndSize.data,
@@ -104,33 +105,6 @@ router.get("/brand/:brandname/size/:size", async (req, res) => {
         res.redirect("/");
     };
 });
-
-// Router to update shoe stock levels
-// router.post("/brand/shoes/sold/updateInventory/:id", async (req, res) => {
-//     const id = req.params.id;
-//     const updated = (await axios.post(shoesAPI + `/brand/shoes/sold/updateInventory/${id}`)).data;
-//     if (updated.status === "success") {
-//         req.flash("success", "Added a shoe to the cart.");
-//         res.redirect("/");
-//     } else {
-//         req.flash("error", "Shoe not added correctly.");
-//         res.redirect("/");
-//     };
-// });
-
-// Router to remove a shoe from the shoes display - admin has rights to remove a shoe
-// router.post("/brand/shoes/sold/:id", async (req, res) => {
-//     const id = req.params.id;
-//     const soldShoe = (await axios.post(shoesAPI + `/brand/shoes/sold/${id}`)).data;
-//     if (soldShoe.status === "success") {
-//         req.flash("success", "Successfully removed a shoe.");
-//         // Navigate into the admins page
-//         res.redirect("/admin");
-//     } else {
-//         req.flash("error", "Try to remove a shoe again.");
-//         res.redirect("/admin");
-//     };
-// });
 
 // Routers to filter by colors
 router.get("/brand/color/:color", async (req, res) => {
@@ -148,7 +122,8 @@ router.get("/brand/color/:color", async (req, res) => {
 router.get("/brand/:brandname/color/:color", async (req, res) => {
     const { brandname, color } = req.params;
     const responded = await axios.get(shoesAPI + `/brand/${brandname}/color/${color}`);
-    const filtered = responded.data
+    const filtered = responded.data;
+
     if (filtered) {
         req.flash("success", "Successfully filtered by color and brand.");
         res.render("index", {
@@ -160,7 +135,8 @@ router.get("/brand/:brandname/color/:color", async (req, res) => {
 router.get("/brand/:brandname/color/:color/size/:size", async (req, res) => {
     const { brandname, color, size } = req.params;
     const responded = await axios.get(shoesAPI + `/brand/${brandname}/color/${color}/size/${size}`);
-    const filtered = responded.data
+    const filtered = responded.data;
+
     if (filtered) {
         req.flash("success", "Successfully filtered by color.");
         res.render("index", {
