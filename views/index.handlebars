@@ -93,9 +93,9 @@
 
     {{!-- Shoes component --}}
     <div class="shoesContainer">
-        <div class="cardContainer flex flex-wrap space-y-4">
+        <div class="cardContainer flex justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {{#each shoes}}
-                <div class="card w-full max-w-sm rounded-md overflow-hidden shadow-lg hover:bg-[#fff0bb]">
+                <div class="card w-full max-w-sm rounded-md overflow-hidden shadow-lg m-1 content-center hover:bg-[#fff0bb]">
                     <ul>
                         <a href="/shoe/{{shoe_name}}">
                             <li class="w-full"><img src="{{image}}" alt="{{shoe_name}}" srcset=""></li>
