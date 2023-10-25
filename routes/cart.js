@@ -32,17 +32,13 @@ cartRouter.get("/username/:username", async (req, res) => {
 
 cartRouter.post("/username/:username/shoeId/:shoeId/add", async (req, res) => {
     const { username, shoeId } = req.params;
-    const addToCart = (await axios.post(cartAPI + `/username/${username}/${shoeId}/add`, {
-        headers: headers
-    })).data;
+    const addToCart = (await axios.post(cartAPI + `/username/${username}/${shoeId}/add`)).data;
     if (addToCart.status === "success") req.flash("success", "Added to the cart.");
 });
 
 cartRouter.post("/username/:username/shoeId/:shoeId/remove", async (req, res) => {
     const { username, shoeId } = req.params;
-    const removeFromCart = (await axios.post(cartAPI + `/username/${username}/${shoeId}/remove`, {
-        headers: headers
-    })).data;
+    const removeFromCart = (await axios.post(cartAPI + `/username/${username}/${shoeId}/remove`)).data;
     if (removeFromCart.status === "success") req.flash("success", "Removed from the cart.");
 });
 
