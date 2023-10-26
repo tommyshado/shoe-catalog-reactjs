@@ -42,10 +42,10 @@ cartRouter.post("/username/:username/shoeId/:shoeId/remove", async (req, res) =>
     if (removeFromCart.status === "success") req.flash("success", "Removed from the cart.");
 });
 
-cartRouter.post("/username/:username/shoeId/:shoeId/payment", async (req, res) => {
+cartRouter.post("/username/:username/payment", async (req, res) => {
     const { username, shoeId } = req.params;
     const checkOut = (await axios.post(cartAPI + `/username/${username}/${shoeId}/payment`)).data;
-    if (checkOut.status === "success") req.flash("success", "Removed from the cart.");
+    if (checkOut.status === "success") req.flash("success", "Successfully made a payment.");
 });
 
 export default cartRouter;
