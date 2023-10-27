@@ -50,6 +50,16 @@ cartRouter.post("/username/:username/shoeId/:shoeId/remove", async (req, res) =>
     };
 });
 
+cartRouter.post("/username/:username/clear", async (req, res) => {
+    const { username } = req.params;
+    const clearCart = (await axios.post(cartAPI + `/username/${username}/clear`)).data;
+
+    if (clearCart.status === "success") {
+        req.flash("success", "Removed shoes in the cart.");
+        res.redirect(`/username/${username}`);
+    };
+});
+
 cartRouter.post("/username/:username/payment", async (req, res) => {
     const { username } = req.params;
     const { payment } = req.body;
