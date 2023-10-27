@@ -34,24 +34,39 @@ cartRouter.post("/username/:username/shoeId/:shoeId/add", async (req, res) => {
     const { username, shoeId } = req.params;
     const addToCart = (await axios.post(cartAPI + `/username/${username}/shoeId/${shoeId}/add`)).data;
 
-    if (addToCart.status === "success") req.flash("success", "Added to the cart.");
+    if (addToCart.status === "success") {
+        req.flash("success", "Increased the quantity.");
+        res.redirect(`/username/${username}`);
+    };
 });
 
 cartRouter.post("/username/:username/shoeId/:shoeId/remove", async (req, res) => {
     const { username, shoeId } = req.params;
     const removeFromCart = (await axios.post(cartAPI + `/username/${username}/shoeId/${shoeId}/remove`)).data;
 
-    if (removeFromCart.status === "success") req.flash("success", "Removed from the cart.");
+    if (removeFromCart.status === "success") {
+        req.flash("success", "Decreased the quantity.");
+        res.redirect(`/username/${username}`);
+    };
 });
 
 cartRouter.post("/username/:username/payment", async (req, res) => {
     const { username } = req.params;
-    const checkOut = (await axios.post(cartAPI + `/username/${username}/payment`)).data;
+    const { payment } = req.body;
+    const checkOut = (await axios.post(cartAPI + `/username/${username}/payment`, {
+        payment
+    })).data;
 
     const { error } = checkOut;
-    if (error) req.flash("error", `${error}`);
+    if (error) {
+        req.flash("error", `${error}`);
+        res.redirect(`/username/${username}`);
+    };
 
-    if (checkOut.status === "success") req.flash("success", "Successfully made a payment.");
+    if (checkOut.status === "success") {
+        req.flash("success", "Successfully made a payment.");
+        res.redirect(`/username/${username}`);
+    };
 });
 
 export default cartRouter;
