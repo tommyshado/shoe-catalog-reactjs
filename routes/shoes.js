@@ -73,25 +73,17 @@ router.get("/brand/:brandname", async (req, res) => {
 });
 
 router.post("/brand", async (req, res) => {
-    const { brandname } = req.body;
+    const responded = await axios.post(shoesAPI + `/brand`);
+    const searchedByBrand = responded.data;
 
-    if (brandname) {
-        const responded = await axios.post(shoesAPI + `/brand/${brandname}`, {
-            brandname
+    if (filteredByBrand) {
+        req.flash("success", "Successfully filtered for shoe brand.");
+        res.render("index", {
+            shoes: searchedByBrand.data
         });
-        const filteredByBrand = responded.data;
 
-        if (filteredByBrand) {
-            req.flash("success", "Successfully filtered for shoe brand.");
-            res.render("index", {
-                shoes: filteredByBrand.data,
-                brand: brandname
-            });
-        } else {
-            req.flash("error", "Shoe not available.");
-            res.redirect("/");
-        };
     } else {
+        req.flash("error", "Shoe not available.");
         res.redirect("/");
     };
 });

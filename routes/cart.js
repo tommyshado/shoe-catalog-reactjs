@@ -32,19 +32,25 @@ cartRouter.get("/username/:username", async (req, res) => {
 
 cartRouter.post("/username/:username/shoeId/:shoeId/add", async (req, res) => {
     const { username, shoeId } = req.params;
-    const addToCart = (await axios.post(cartAPI + `/username/${username}/${shoeId}/add`)).data;
+    const addToCart = (await axios.post(cartAPI + `/username/${username}/shoeId/${shoeId}/add`)).data;
+
     if (addToCart.status === "success") req.flash("success", "Added to the cart.");
 });
 
 cartRouter.post("/username/:username/shoeId/:shoeId/remove", async (req, res) => {
     const { username, shoeId } = req.params;
-    const removeFromCart = (await axios.post(cartAPI + `/username/${username}/${shoeId}/remove`)).data;
+    const removeFromCart = (await axios.post(cartAPI + `/username/${username}/shoeId/${shoeId}/remove`)).data;
+
     if (removeFromCart.status === "success") req.flash("success", "Removed from the cart.");
 });
 
 cartRouter.post("/username/:username/payment", async (req, res) => {
-    const { username, shoeId } = req.params;
-    const checkOut = (await axios.post(cartAPI + `/username/${username}/${shoeId}/payment`)).data;
+    const { username } = req.params;
+    const checkOut = (await axios.post(cartAPI + `/username/${username}/payment`)).data;
+
+    const { error } = checkOut;
+    if (error) req.flash("error", `${error}`);
+
     if (checkOut.status === "success") req.flash("success", "Successfully made a payment.");
 });
 
