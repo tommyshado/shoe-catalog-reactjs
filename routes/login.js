@@ -32,12 +32,12 @@ loginRouter.post("/login", async (req, res) => {
     });
     const loggedInUser = responded.data.token;
 
-    // Stored the token in session
-    req.session.token = loggedInUser;
-
     if (loggedInUser) {
         const verify = jwt.verify(loggedInUser, process.env.TOKEN);
         if (verify) {
+            // Stored the token in session
+            req.session.token = loggedInUser;
+
             // Display success message to the UI
             req.flash("success", "Logged in successfully.");
             // Get back to the home route
