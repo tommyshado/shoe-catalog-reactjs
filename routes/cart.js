@@ -44,6 +44,7 @@ cartRouter.post("/shoeId/:shoeId/add", async (req, res) => {
     if (!headers["auth-token"]) {
         req.flash("error", "Log in please.");
         res.redirect("/login");
+        return;
     };
 
     const { shoeId } = req.params;
