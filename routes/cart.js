@@ -7,75 +7,150 @@ const cartAPI = "https://api-for-shoes.onrender.com/api/cart";
 // Router instance
 const cartRouter = Router();
 
+
 // Router to get the shoes added to the shopping cart
-cartRouter.get("/username/:username", async (req, res) => {
-    const username = req.params.username;
-    const data = (await axios.get(cartAPI + `/username/${username}`)).data;
+cartRouter.get("/", async (req, res) => {
+    const headers = {
+        "Content-Type": "application/json",
+        "auth-token": req.session.token
+    };
+    const data = (await axios.get(cartAPI),
+    {
+        headers: headers,
+    }).data;
+
+    const { error } = data;
+    if (error) {
+        req.flash("error", `${error}`);
+        res.redirect("/signup");
+    };
 
     // GET cart and total
     const cart = data.cart;
     const total = data.total;
 
-    // Loop over the length of the cart variable then...
-    for (const basket in cart) {
-        // CREATE a username key and... 
-        // SET the username key with the username value from the params
-        cart[basket].username = username;
-    };
-
     res.render("cart", {
         cart: cart,
-        cartTotal: total,
-        username: username
+        cartTotal: total
     });
 });
 
-cartRouter.post("/username/:username/shoeId/:shoeId/add", async (req, res) => {
-    const { username, shoeId } = req.params;
-    const addToCart = (await axios.post(cartAPI + `/username/${username}/shoeId/${shoeId}/add`)).data;
+cartRouter.post("/shoeId/:shoeId/add", async (req, res) => {
+    const headers = {
+        "Content-Type": "application/json",
+        "auth-token": req.session.token
+    };
+    
+    if (!headers["auth-token"]) {
+        req.flash("error", "Log in please.");
+        res.redirect("/login");
+    };
+
+    const { shoeId } = req.params;
+    const addToCart = (
+        await axios.post(
+            cartAPI + `/shoeId/${shoeId}/add`,
+            {},
+            {
+                headers: headers,
+            }
+        )
+    ).data;
 
     if (addToCart.status === "success") {
-        req.flash("success", "Increased the quantity.");
-        res.redirect(`/username/${username}`);
+        req.flash("success", "Added to the cart.");
+        res.redirect("/");
     };
 });
 
-cartRouter.post("/username/:username/shoeId/:shoeId/remove", async (req, res) => {
-    const { username, shoeId } = req.params;
-    const removeFromCart = (await axios.post(cartAPI + `/username/${username}/shoeId/${shoeId}/remove`)).data;
+cartRouter.post("/shoeId/:shoeId/remove", async (req, res) => {
+    const headers = {
+        "Content-Type": "application/json",
+        "auth-token": req.session.token
+    };
+
+    if (!headers["auth-token"]) {
+        req.flash("error", "Log in please.");
+        res.redirect("/login");
+    };
+    
+    const { shoeId } = req.params;
+    const removeFromCart = (
+        await axios.post(
+            cartAPI + `/shoeId/${shoeId}/remove`,
+            {},
+            {
+                headers: headers,
+            }
+        )
+    ).data;
 
     if (removeFromCart.status === "success") {
         req.flash("success", "Decreased the quantity.");
-        res.redirect(`/username/${username}`);
+        res.redirect("/");
     };
 });
 
-cartRouter.post("/username/:username/clear", async (req, res) => {
-    const { username } = req.params;
-    const clearCart = (await axios.post(cartAPI + `/username/${username}/clear`)).data;
+cartRouter.post("/removeAShoe", async (req, res) => {
+    const headers = {
+        "Content-Type": "application/json",
+        "auth-token": req.session.token
+    };
+
+    if (!headers["auth-token"]) {
+        req.flash("error", "Log in please.");
+        res.redirect("/login");
+    };
+
+    const clearCart = (
+        await axios.post(
+            cartAPI + `/removeAShoe`,
+            {},
+            {
+                headers: headers,
+            }
+        )
+    ).data;
 
     if (clearCart.status === "success") {
         req.flash("success", "Removed shoes in the cart.");
-        res.redirect(`/username/${username}`);
+        res.redirect("/");
     };
 });
 
-cartRouter.post("/username/:username/payment", async (req, res) => {
-    const { username } = req.params;
+cartRouter.post("/payment", async (req, res) => {
+    const headers = {
+        "Content-Type": "application/json",
+        "auth-token": req.session.token
+    };
+
+    if (!headers["auth-token"]) {
+        req.flash("error", "Log in please.");
+        res.redirect("/login");
+    };
+
     const { payment } = req.body;
-    const checkOut = (await axios.post(cartAPI + `/username/${username}/payment`, {
-        payment
-    })).data;
+    const checkOut = (
+        await axios.post(
+            cartAPI + `/payment`,
+            {
+                payment,
+            },
+            {
+                headers: headers,
+            }
+        )
+    ).data;
 
     const { error } = checkOut;
     if (error) {
         req.flash("error", `${error}`);
-        res.redirect(`/username/${username}`);
+        res.redirect("/");
     };
 
     if (checkOut.status === "success") {
         req.flash("success", "Successfully made a payment.");
-        res.redirect(`/username/${username}`);
+        res.redirect("/");
     };
 });
 

@@ -32,6 +32,9 @@ loginRouter.post("/login", async (req, res) => {
     });
     const loggedInUser = responded.data.token;
 
+    // Stored the token in session
+    req.session.token = loggedInUser;
+
     if (loggedInUser) {
         const verify = jwt.verify(loggedInUser, process.env.TOKEN);
         if (verify) {
